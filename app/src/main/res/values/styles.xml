@@ -1,11 +1,54 @@
 <resources>
 
-    <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
-        <!-- Customize your theme here. -->
-        <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <item name="colorAccent">@color/colorAccent</item>
+    <!-- Base application theme. see here : http://www.materialpalette.com/indigo/grey -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="colorPrimary">@color/primary</item>
+        <item name="colorPrimaryDark">@color/primaryDark</item>
+        <item name="colorAccent">@color/accent</item>
+
+        <item name="android:textColorPrimary">@color/primaryText</item>
+        <item name="android:textColorPrimaryInverse">@color/primaryTextInverse</item>
+
+        <item name="android:windowBackground">@color/background</item>
+    </style>
+
+    <style name="AppTheme.Input" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="colorControlActivated">@color/primary</item>
+        <item name="colorControlHighlight">@color/primary</item>
+
+        <item name="colorControlNormal">@color/secondaryText</item>
+        <item name="android:textColorHint">@color/secondaryText</item>
+        <item name="android:textColorPrimary">@color/primaryText</item>
+    </style>
+
+    <style name="AppTheme.Title">
+        <item name="android:textSize">@dimen/abc_text_size_headline_material</item>
+        <item name="android:textColor">@color/primary</item>
+    </style>
+
+    <style name="AppTheme.PrimaryFlatButton" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="colorButtonNormal">@color/primaryTextInverse</item>
+        <item name="android:textColorPrimary">@color/primary</item>
+    </style>
+
+    <style name="AppTheme.AccentFlatButton" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="colorButtonNormal">@color/primaryTextInverse</item>
+        <item name="android:textColorPrimary">@color/accent</item>
+    </style>
+
+    <style name="AppTheme.ColoredButton" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="colorButtonNormal">@color/primary</item>
+        <item name="android:textColorPrimary">@color/primaryTextInverse</item>
+    </style>
+
+    <style name="AppTheme.ColoredAccentButton" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="colorButtonNormal">@color/accent</item>
+        <item name="android:textColorPrimary">@color/primaryTextInverse</item>
+    </style>
+
+    <style name="AppTheme.LogoutButton" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="colorButtonNormal">@color/logoutColor</item>
+        <item name="android:textColorPrimary">@color/primaryTextInverse</item>
     </style>
 
 </resources>
