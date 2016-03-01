@@ -1,3 +1,11 @@
 <resources>
     <string name="app_name">TakeANote</string>
+
+    <!-- Login View -->
+    <string name="connection">sign in</string>
+    <string name="Connection">Sign in</string>
+    <string name="email_input">Email address</string>
+    <string name="password_input">Password</string>
+    <!-- ENDOF - Login View -->
+
 </resources>
