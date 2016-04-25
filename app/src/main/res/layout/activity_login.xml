@@ -59,7 +59,7 @@
         android:layout_height="wrap_content"
         android:text="@string/connection"
         android:textAllCaps="true"
-        android:id="@+id/btn_connexion"
+        android:id="@+id/btn_connection"
         android:layout_marginTop="30dp"
         android:theme="@style/AppTheme.ColoredButton"
         android:layout_below="@+id/password_til"

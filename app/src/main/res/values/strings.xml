@@ -1,5 +1,8 @@
 <resources>
+    <!-- General -->
     <string name="app_name">TakeANote</string>
+    <string name="app_github">https://github.com/TakeANote</string>
+    <!-- ENDOF - General -->
 
     <!-- Login View -->
     <string name="connection">sign in</string>
@@ -7,5 +10,21 @@
     <string name="email_input">Email address</string>
     <string name="password_input">Password</string>
     <!-- ENDOF - Login View -->
+
+    <!-- Main Activity -->
+    <string name="title_activity_main">MainActivity</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <!-- ENDOF - Main Activity -->
+
+    <!-- Navigation Drawer -->
+    <string name="nav_drawer_notes_title">My Notes</string>
+    <string name="nav_drawer_shared_note_title">My Shared Notes</string>
+    <string name="nav_drawer_record_note_title">My Recorded Notes</string>
+    <string name="nav_drawer_settings_title">Settings</string>
+    <string name="nav_drawer_social_title">Social</string>
+    <string name="nav_drawer_friends_title">Friends</string>
+    <string name="nav_drawer_logout_title">Logout</string>
+    <!-- ENDOF - Navigation Drawer -->
 
 </resources>
