@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/action_bold"
+        android:checkable="true"
+        android:icon="@mipmap/ic_format_bold_white_24dp"
+        android:title="@string/format_bold"
+        app:showAsAction="always" />
+    <item
+        android:id="@+id/action_italic"
+        android:icon="@mipmap/ic_format_italic_white_24dp"
+        android:title="@string/format_italic"
+        app:showAsAction="always" />
+    <item
+        android:id="@+id/action_underlined"
+        android:icon="@mipmap/ic_format_underlined_white_24dp"
+        android:title="@string/format_underlined"
+        app:showAsAction="always" />
+    <item
+        android:id="@+id/action_align_left"
+        android:icon="@mipmap/ic_format_align_left_white_24dp"
+        android:title="@string/format_align_left"
+        app:showAsAction="always" />
+    <item
+        android:id="@+id/action_align_center"
+        android:icon="@mipmap/ic_format_align_center_white_24dp"
+        android:title="@string/format_align_center"
+        app:showAsAction="always" />
+    <item
+        android:id="@+id/action_align_right"
+        android:icon="@mipmap/ic_format_align_right_white_24dp"
+        android:title="@string/format_align_right"
+        app:showAsAction="always" />
+    <item
+        android:id="@+id/action_color_text"
+        android:icon="@mipmap/ic_format_color_text_white_24dp"
+        android:title="@string/format_color_text"
+        app:showAsAction="ifRoom" />
+</menu>

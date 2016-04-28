@@ -20,6 +20,10 @@
             android:label="@string/title_activity_main"
             android:theme="@style/AppTheme.NoActionBar" >
         </activity>
+        <activity android:name=".activity.DocActivity" >
+        </activity>
+        <activity android:name=".activity.ColorPickerActivity" >
+        </activity>
     </application>
 
 </manifest>

@@ -27,4 +27,15 @@
     <string name="nav_drawer_logout_title">Logout</string>
     <!-- ENDOF - Navigation Drawer -->
 
+    <!-- Doc format items -->
+    <string name="format_justify">justify</string>
+    <string name="format_bold">bold</string>
+    <string name="format_italic">italic</string>
+    <string name="format_underlined">underlined</string>
+    <string name="format_align_left">align left</string>
+    <string name="format_align_center">align center</string>
+    <string name="format_align_right">align right</string>
+    <string name="format_color_text">color</string>
+    <!-- ENDOF - Doc format items -->
+
 </resources>

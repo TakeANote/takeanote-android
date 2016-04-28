@@ -1,5 +1,6 @@
 package takeanote.takeanote.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -20,7 +21,6 @@ public class MainActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
-
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -55,7 +55,8 @@ public class MainActivity extends AppCompatActivity
         } else if (id == R.id.nav_shared_notes) {
 
         } else if (id == R.id.nav_record_notes) {
-
+            Intent intent = new Intent(this, DocActivity.class);
+            startActivity(intent);
         } else if (id == R.id.nav_settings) {
 
         } else if (id == R.id.nav_friends) {
