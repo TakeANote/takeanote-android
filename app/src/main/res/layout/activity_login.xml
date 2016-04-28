@@ -14,7 +14,7 @@
         android:layout_height="wrap_content"
         android:textAppearance="@style/Base.TextAppearance.AppCompat.Headline"
         android:text="@string/app_name"
-        android:id="@+id/title"
+        android:id="@+id/document_picture"
         android:layout_marginTop="35dp"
         android:theme="@style/AppTheme.Title" />
 
@@ -24,7 +24,7 @@
         android:layout_height="wrap_content"
         android:theme="@style/AppTheme.Input"
         android:layout_marginTop="30dp"
-        android:layout_below="@+id/title"
+        android:layout_below="@+id/document_picture"
         android:touchscreenBlocksFocus="false">
         <EditText
             android:layout_width="match_parent"

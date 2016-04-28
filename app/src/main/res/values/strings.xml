@@ -38,4 +38,8 @@
     <string name="format_color_text">color</string>
     <!-- ENDOF - Doc format items -->
 
+    <!-- Note list -->
+    <string name="note_item_default_title">Document title</string>
+    <string name="note_item_default_creation_date">Created on 10.10.2010</string>
+    <!-- ENDOF - Note list -->
 </resources>
