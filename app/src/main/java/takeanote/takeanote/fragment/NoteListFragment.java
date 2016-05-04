@@ -15,6 +15,7 @@ import com.afollestad.materialdialogs.MaterialDialog;
 
 import org.apache.commons.lang3.text.WordUtils;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.Bind;
@@ -25,25 +26,27 @@ import takeanote.takeanote.R;
 import takeanote.takeanote.activity.interaction.INoteInteraction;
 import takeanote.takeanote.adapter.NoteListAdapter;
 import takeanote.takeanote.model.Document;
+import takeanote.takeanote.model.IItem;
 
 /**
  * A simple {@link Fragment} subclass.
  */
-public class NoteListFragment extends Fragment {
+public class NoteListFragment extends Fragment implements NoteListAdapter.IProcessItemOptionSelection {
 
+    private static final String TAG = "NOTE_LIST_FRAGMENT";
     @Bind(R.id.list)
     ListView mList;
     @Bind(R.id.note_list_layout)
     View mNotesLayout;
 
-    private Context mContext;
-    private List<Document> mListDocuments;
-    private NoteListAdapter mAdapter;
+    protected Context mContext;
+    protected List<IItem> mListItems;
+    protected NoteListAdapter mAdapter;
 
     public NoteListFragment() {
         // Required empty public constructor
     }
-    
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -51,7 +54,7 @@ public class NoteListFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_note_list, container, false);
         ButterKnife.bind(this, view);
 
-        mAdapter = new NoteListAdapter(mContext, getItemList());
+        mAdapter = new NoteListAdapter(mContext, getItemList(), this, getImageRes());
         mList.setAdapter(mAdapter);
         return view;
     }
@@ -60,7 +63,7 @@ public class NoteListFragment extends Fragment {
     public void onItemClick(int position) {
         try {
             INoteInteraction noteInteraction = (INoteInteraction) mContext;
-            noteInteraction.onNoteSelected(mListDocuments.get(position));
+            noteInteraction.onNoteSelected((Document) mListItems.get(position));
         } catch (ClassCastException e) {
             throw new ClassCastException(mContext.toString() + " must implement INoteInteraction");
         }
@@ -94,10 +97,13 @@ public class NoteListFragment extends Fragment {
         super.onResume();
     }
 
-    private List<Document> getItemList() {
+    protected List<IItem> getItemList() {
         List<Document> list = Document.listAll(Document.class);
-        mListDocuments = list;
-        return list;
+        mListItems = new ArrayList<>();
+        for (Document doc : list) {
+            mListItems.add(doc);
+        }
+        return mListItems;
     }
 
     @Override
@@ -116,5 +122,47 @@ public class NoteListFragment extends Fragment {
     public void onDestroyView() {
         super.onDestroyView();
         ButterKnife.unbind(this);
+    }
+
+    @Override
+    public void onItemOptionSelection(final IItem item, String option) {
+        final Document doc = (Document) item;
+        if (mContext.getString(R.string.delete_note).equals(option)) {
+            mAdapter.deleteItem(item);
+            Document.delete(doc);
+            Snackbar.make(mNotesLayout, WordUtils.capitalize(item.getName()) +
+                    " deleted.", Snackbar.LENGTH_LONG).show();
+        } else if (mContext.getString(R.string.rename_note).equals(option)) {
+            new MaterialDialog.Builder(mContext)
+                    .title(R.string.dialog_rename_document_title)
+                    .content(item.getName())
+                    .inputType(InputType.TYPE_CLASS_TEXT)
+                    .input("", item.getName(), new MaterialDialog.InputCallback() {
+                                @Override
+                                public void onInput(MaterialDialog dialog, CharSequence input) {
+                                    if (Document.find(Document.class, "name = ?", input.toString().toLowerCase().trim()).isEmpty()) {
+                                        mAdapter.deleteItem(item);
+                                        doc.setName(String.valueOf(input));
+                                        doc.save();
+                                        mAdapter.addItem(doc);
+                                    } else {
+                                        Snackbar.make(mNotesLayout, "The document \"" +
+                                                WordUtils.capitalize(String.valueOf(input)) +
+                                                "\" already exists.", Snackbar.LENGTH_LONG).show();
+                                    }
+                                }
+                            }
+
+                    ).show();
+        }
+    }
+
+    @Override
+    public String[] getOptionList() {
+        return mContext.getResources().getStringArray(R.array.note_options);
+    }
+
+    protected int getImageRes() {
+        return R.mipmap.ic_description_black_24dp;
     }
 }

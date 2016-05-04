@@ -7,23 +7,24 @@ import java.io.Serializable;
 /**
  * Created by linard_f on 5/3/16.
  */
-public class Document extends SugarRecord implements Serializable, IItem {
+public class SharedDocument extends SugarRecord implements Serializable, IItem {
 
     private String name;
     private String content;
 
-    public Document() {}
+    public SharedDocument() {}
 
-    public Document(String name) {
+    public SharedDocument(String name) {
         this.name = name;
         this.content = "";
     }
 
-    public Document(String name, String content) {
+    public SharedDocument(String name, String content) {
         this.name = name;
         this.content = content;
     }
 
+    @Override
     public String getName() {
         return name;
     }

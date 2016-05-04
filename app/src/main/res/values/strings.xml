@@ -47,7 +47,18 @@
     <!-- Dialogs -->
     <string name="dialog_create_document_title">Create note</string>
     <string name="dialog_create_document_content">Note name</string>
+    <string name="dialog_rename_document_title">Rename note</string>
+    <string name="dialog_create_friend_title">Add a friend</string>
+    <!-- ENDOF - Dialogs -->
 
-    <!-- Dialogs -->
+    <!-- Note options -->
+    <string name="delete_note">Delete this note</string>
+    <string name="rename_note">Rename this note</string>
+    <string name="dialog_create_friend_content">Friend name</string>
+    <string-array name="note_options">
+        <item>@string/delete_note</item>
+        <item>@string/rename_note</item>
+    </string-array>
+    <!-- ENDOF -Note options -->
 
 </resources>

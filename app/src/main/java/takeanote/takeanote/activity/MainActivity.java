@@ -16,7 +16,9 @@ import com.orm.SugarContext;
 import butterknife.ButterKnife;
 import takeanote.takeanote.R;
 import takeanote.takeanote.activity.interaction.INoteInteraction;
+import takeanote.takeanote.fragment.FriendListFragment;
 import takeanote.takeanote.fragment.NoteListFragment;
+import takeanote.takeanote.fragment.SharedNoteListFragment;
 import takeanote.takeanote.model.Document;
 
 public class MainActivity extends AppCompatActivity
@@ -69,13 +71,13 @@ public class MainActivity extends AppCompatActivity
         if (id == R.id.nav_notes) {
             fragment = new NoteListFragment();
         } else if (id == R.id.nav_shared_notes) {
-
+            fragment = new SharedNoteListFragment();
         } else if (id == R.id.nav_record_notes) {
 
         } else if (id == R.id.nav_settings) {
 
         } else if (id == R.id.nav_friends) {
-
+            fragment = new FriendListFragment();
         } else if (id == R.id.nav_logout) {
 
         }
