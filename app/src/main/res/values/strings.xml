@@ -49,16 +49,25 @@
     <string name="dialog_create_document_content">Note name</string>
     <string name="dialog_rename_document_title">Rename note</string>
     <string name="dialog_create_friend_title">Add a friend</string>
+    <string name="dialog_create_friend_content">Friend name</string>
     <!-- ENDOF - Dialogs -->
 
     <!-- Note options -->
     <string name="delete_note">Delete this note</string>
     <string name="rename_note">Rename this note</string>
-    <string name="dialog_create_friend_content">Friend name</string>
     <string-array name="note_options">
         <item>@string/delete_note</item>
         <item>@string/rename_note</item>
     </string-array>
-    <!-- ENDOF -Note options -->
+    <!-- ENDOF - Note options -->
+
+    <!-- Friend options -->
+    <string name="delete_friend">Delete this friend</string>
+    <string name="poke_friend">Poke this friend</string>
+    <string-array name="friend_options">
+        <item>@string/delete_friend</item>
+        <item>@string/poke_friend</item>
+    </string-array>
+    <!-- ENDOF - Friend options -->
 
 </resources>

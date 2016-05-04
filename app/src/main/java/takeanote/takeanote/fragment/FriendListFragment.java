@@ -14,7 +14,6 @@ import java.util.List;
 
 import butterknife.OnClick;
 import takeanote.takeanote.R;
-import takeanote.takeanote.model.Document;
 import takeanote.takeanote.model.Friend;
 import takeanote.takeanote.model.IItem;
 
@@ -37,6 +36,11 @@ public class FriendListFragment extends NoteListFragment {
         return mListItems;
     }
 
+    @Override
+    public void onItemClick(int position) {
+
+    }
+
     @OnClick(R.id.fab)
     public void onClickFab() {
         new MaterialDialog.Builder(mContext)
@@ -52,10 +56,30 @@ public class FriendListFragment extends NoteListFragment {
                             mAdapter.addItem(friend);
                         } else {
                             Snackbar.make(mNotesLayout, WordUtils.capitalize(friend.getName()) +
-                                    "\" already added.", Snackbar.LENGTH_LONG).show();
+                                    " already added.", Snackbar.LENGTH_LONG).show();
                         }
                     }
                 }).show();
+    }
+
+    @Override
+    public void onItemOptionSelection(final IItem item, String option) {
+        final Friend friend = (Friend) item;
+        if (mContext.getString(R.string.delete_friend).equals(option)) {
+            mAdapter.deleteItem(item);
+            Friend.delete(friend);
+            Snackbar.make(mNotesLayout, WordUtils.capitalize(item.getName()) +
+                    " deleted.", Snackbar.LENGTH_LONG).show();
+        } else if (mContext.getString(R.string.poke_friend).equals(option)) {
+            Snackbar.make(mNotesLayout, "You have just poked " +
+                    WordUtils.capitalize(String.valueOf(friend.getName())) +
+                    "!", Snackbar.LENGTH_LONG).show();
+        }
+    }
+
+    @Override
+    public String[] getOptionList() {
+        return mContext.getResources().getStringArray(R.array.friend_options);
     }
 
     @Override

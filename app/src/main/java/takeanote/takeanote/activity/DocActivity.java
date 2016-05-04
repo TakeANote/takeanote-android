@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.MenuItem;
 
 import butterknife.Bind;
@@ -24,6 +23,12 @@ public class DocActivity extends AppCompatActivity {
     @Bind(R.id.editor)
     RichEditor mEditor;
     private Document mDocument;
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        ButterKnife.unbind(this);
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

@@ -6,6 +6,7 @@ import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -24,18 +25,21 @@ import takeanote.takeanote.model.Document;
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, INoteInteraction {
 
+    private Toolbar mToolbar;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
         SugarContext.init(this);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+        mToolbar = (Toolbar) findViewById(R.id.toolbar);
+        mToolbar.setTitle("My Notes");
+        setSupportActionBar(mToolbar);
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
-                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+                this, drawer, mToolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.setDrawerListener(toggle);
         toggle.syncState();
 
@@ -49,6 +53,7 @@ public class MainActivity extends AppCompatActivity
     protected void onDestroy() {
         super.onDestroy();
         SugarContext.terminate();
+        ButterKnife.unbind(this);
     }
 
     @Override
@@ -66,17 +71,19 @@ public class MainActivity extends AppCompatActivity
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
         int id = item.getItemId();
+        ActionBar actionBar = getSupportActionBar();
         Fragment fragment = null;
 
         if (id == R.id.nav_notes) {
+            actionBar.setTitle("My Notes");
             fragment = new NoteListFragment();
         } else if (id == R.id.nav_shared_notes) {
+            actionBar.setTitle("Shared Notes");
             fragment = new SharedNoteListFragment();
-        } else if (id == R.id.nav_record_notes) {
-
         } else if (id == R.id.nav_settings) {
 
         } else if (id == R.id.nav_friends) {
+            actionBar.setTitle("Friends");
             fragment = new FriendListFragment();
         } else if (id == R.id.nav_logout) {
 

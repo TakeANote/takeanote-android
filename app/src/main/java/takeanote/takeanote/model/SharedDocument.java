@@ -7,37 +7,32 @@ import java.io.Serializable;
 /**
  * Created by linard_f on 5/3/16.
  */
-public class SharedDocument extends SugarRecord implements Serializable, IItem {
+public class SharedDocument extends SugarRecord implements Serializable {
 
-    private String name;
-    private String content;
+    private Long documentId;
+    private Long friendId;
 
     public SharedDocument() {}
 
-    public SharedDocument(String name) {
-        this.name = name;
-        this.content = "";
+    public SharedDocument(Long documentId, Long friendId) {
+        this.documentId = documentId;
+        this.friendId = friendId;
     }
 
-    public SharedDocument(String name, String content) {
-        this.name = name;
-        this.content = content;
+    public Long getDocumentId() {
+        return documentId;
     }
 
-    @Override
-    public String getName() {
-        return name;
+    public void setDocumentId(Long documentId) {
+        this.documentId = documentId;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public Long getFriendId() {
+        return friendId;
     }
 
-    public String getContent() {
-        return content;
+    public void setFriendId(Long friendId) {
+        this.friendId = friendId;
     }
 
-    public void setContent(String content) {
-        this.content = content;
-    }
 }
