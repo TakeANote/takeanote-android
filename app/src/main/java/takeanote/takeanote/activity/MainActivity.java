@@ -11,18 +11,23 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 
+import com.orm.SugarContext;
+
 import butterknife.ButterKnife;
 import takeanote.takeanote.R;
+import takeanote.takeanote.activity.interaction.INoteInteraction;
 import takeanote.takeanote.fragment.NoteListFragment;
+import takeanote.takeanote.model.Document;
 
 public class MainActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener {
+        implements NavigationView.OnNavigationItemSelectedListener, INoteInteraction {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
+        SugarContext.init(this);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -36,6 +41,12 @@ public class MainActivity extends AppCompatActivity
         navigationView.setNavigationItemSelectedListener(this);
 
         getSupportFragmentManager().beginTransaction().replace(R.id.frame_content, new NoteListFragment()).commit();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        SugarContext.terminate();
     }
 
     @Override
@@ -60,8 +71,7 @@ public class MainActivity extends AppCompatActivity
         } else if (id == R.id.nav_shared_notes) {
 
         } else if (id == R.id.nav_record_notes) {
-            Intent intent = new Intent(this, DocActivity.class);
-            startActivity(intent);
+
         } else if (id == R.id.nav_settings) {
 
         } else if (id == R.id.nav_friends) {
@@ -76,5 +86,14 @@ public class MainActivity extends AppCompatActivity
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    @Override
+    public void onNoteSelected(Document document) {
+        Intent intent = new Intent(this, DocActivity.class);
+        Bundle b = new Bundle();
+        b.putLong(DocActivity.DOCUMENT_TAG, document.getId());
+        intent.putExtras(b);
+        startActivity(intent);
     }
 }

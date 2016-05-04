@@ -4,6 +4,7 @@
     <group android:checkableBehavior="single">
         <item
             android:id="@+id/nav_notes"
+            android:checked="true"
             android:icon="@mipmap/ic_folder_black_48dp"
             android:title="@string/nav_drawer_notes_title" />
         <item

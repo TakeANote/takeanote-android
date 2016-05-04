@@ -2,6 +2,7 @@
     <!-- General -->
     <string name="app_name">TakeANote</string>
     <string name="app_github">https://github.com/TakeANote</string>
+    <string name="empty" />
     <!-- ENDOF - General -->
 
     <!-- Login View -->
@@ -42,4 +43,11 @@
     <string name="note_item_default_title">Document title</string>
     <string name="note_item_default_creation_date">Created on 10.10.2010</string>
     <!-- ENDOF - Note list -->
+
+    <!-- Dialogs -->
+    <string name="dialog_create_document_title">Create note</string>
+    <string name="dialog_create_document_content">Note name</string>
+
+    <!-- Dialogs -->
+
 </resources>

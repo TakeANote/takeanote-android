@@ -13,14 +13,17 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import jp.wasabeef.richeditor.RichEditor;
 import takeanote.takeanote.R;
+import takeanote.takeanote.model.Document;
 
 public class DocActivity extends AppCompatActivity {
 
     private static final int COLOR = 1;
     private static final String TAG = "DOC_ACTIVITY";
+    public static final String DOCUMENT_TAG = "DOCUMENT";
     private int mColor = 0x000000;
     @Bind(R.id.editor)
     RichEditor mEditor;
+    private Document mDocument;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,21 +38,39 @@ public class DocActivity extends AppCompatActivity {
         toolbarBottom.setOnMenuItemClickListener(mToolbarClickListener);
         toolbarBottom.inflateMenu(R.menu.activity_doc_bottom);
 
-        mEditor.focusEditor();
+        mDocument = Document.findById(Document.class, (Long) getIntent().getExtras().getSerializable(DOCUMENT_TAG));
+        if (mDocument != null) {
+            mEditor.setHtml(mDocument.getContent());
+        }
         mEditor.setTextColor(mColor);
+        mEditor.focusEditor();
+        mEditor.setOnTextChangeListener(new RichEditor.OnTextChangeListener() {
+            @Override
+            public void onTextChange(String text) {
+                mDocument.setContent(text);
+            }
+        });
         mThis = this;
-        Log.v(TAG, String.valueOf(mEditor.getHeight()));
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case android.R.id.home:
+                if (mDocument != null)
+                    mDocument.save();
                 finish();
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
         }
+    }
+
+    @Override
+    public void onBackPressed() {
+        if (mDocument != null)
+            mDocument.save();
+        super.onBackPressed();
     }
 
     @OnClick(R.id.action_undo)
